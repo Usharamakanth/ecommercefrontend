@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { getProducts } from "../services/fakeProducts";
 // import Like from "./common/like";
+import Pagination from "./common/pagination";
+import { paginate } from "../utils/paginate";
 class Products extends Component {
   state = {
-    products: getProducts()
+    products: getProducts(),
+    pageSize: 3,
+    currentPage: 1
   };
 
   handleDeleteFromProducts = productToDelete => {
@@ -27,6 +31,7 @@ class Products extends Component {
     products[index].numOfItemsInCart--;
     this.setState({ products });
   };
+
   getTotalNumOfItemsInCart() {
     return this.state.products.reduce((a, c) => a + c.numOfItemsInCart, 0);
   }
@@ -37,16 +42,21 @@ class Products extends Component {
     }
   }
 
-  handleLike(likedProduct) {
+  handleLike = likedProduct => {
     const products = [...this.state.products];
     const index = products.indexOf(likedProduct);
     products[index].liked = !products[index].liked;
     this.setState({ products });
-  }
+  };
+
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
 
   render() {
     const { length: count } = this.state.products;
-
+    const { products: allProducts, currentPage, pageSize } = this.state;
+    const products = paginate(allProducts, currentPage, pageSize);
     return (
       <React.Fragment>
         <button className="btn btn-primary pull-right">
@@ -56,19 +66,20 @@ class Products extends Component {
           </span>
         </button>
         <table className="table">
-          <thead className="thead-dark">
+          <thead className="thead-light">
             <tr>
               <th>Image</th>
               <th>Name</th>
               <th>
                 Price <i className="fa fa-eur" aria-hidden="true" />
               </th>
+              <th>Category</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {this.showNoProductsWarning(count)}
-            {this.state.products.map(product => (
+            {products.map(product => (
               <tr key={product._id}>
                 <td>
                   <img
@@ -80,10 +91,11 @@ class Products extends Component {
                 </td>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
+                <td>{product.category.name}</td>
                 <td>
                   <button
                     onClick={() => this.handleAddProductToCart(product)}
-                    className="btn btn-success m-2"
+                    className="btn btn-success"
                   >
                     +
                   </button>
@@ -100,7 +112,7 @@ class Products extends Component {
                   /> */}
                   <button
                     onClick={() => this.handleDeleteFromProducts(product)}
-                    className="btn btn-danger"
+                    className="btn btn-danger m-2"
                   >
                     x
                   </button>
@@ -109,6 +121,12 @@ class Products extends Component {
             ))}
           </tbody>
         </table>
+        <Pagination
+          itemsCount={count}
+          pageSize={this.state.pageSize}
+          currentPage={this.state.currentPage}
+          onPageChange={this.handlePageChange}
+        />
       </React.Fragment>
     );
   }
