@@ -1,6 +1,6 @@
 import React from "react";
 import _ from "lodash";
-
+import propTypes from "prop-types";
 const Pagination = props => {
   //if itemsCount = 9  and pageSize = 4
   //i.e we have to display 4 items in each page
@@ -26,6 +26,13 @@ const Pagination = props => {
       </ul>
     </nav>
   );
+};
+//add type checking after defining the component
+Pagination.propTypes = {
+  itemsCount: propTypes.number.isRequired,
+  pageSize: propTypes.number.isRequired,
+  currentPage: propTypes.number.isRequired,
+  onPageChange: propTypes.func.isRequired
 };
 
 export default Pagination;
