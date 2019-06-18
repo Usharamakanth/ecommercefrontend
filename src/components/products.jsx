@@ -59,14 +59,15 @@ class Products extends Component {
     const products = paginate(allProducts, currentPage, pageSize);
     return (
       <React.Fragment>
+        {/* <body background="bg.jpg" /> */}
         <button className="btn btn-primary pull-right">
           <i className="fa fa-shopping-cart" aria-hidden="true" />
           <span className="badge badge-light m-2">
             {this.getTotalNumOfItemsInCart()}
           </span>
         </button>
-        <table className="table">
-          <thead className="thead-light">
+        <table className="table table-condensed bd-light">
+          <thead className="thead-dark">
             <tr>
               <th>Image</th>
               <th>Name</th>
