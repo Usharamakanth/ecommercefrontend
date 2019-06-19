@@ -1,18 +1,18 @@
 const products = [
   {
     _id: "2b22cd4ddr8g5fbccg571902",
-    name: "Lipbalm",
+    name: "LipBalm",
     price: 12,
-    category: { _id: "2b22cd4ddr8g5fbccg571902", name: "beauty product" },
+    category: { _id: "6b21ca3eeb7f6fbccd471825", name: "Health & Beauty" },
     image: require("../data/images/lipbalm.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571903",
-    name: "coffeemaker.jpg",
+    name: "CoffeeMaker.jpg",
     price: 150,
-    category: { _id: "2b22cd4ddr8g5fbccg571903", name: "kitchen products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471827", name: "Kitchen Items" },
     image: require("../data/images/coffeemaker.jpg"),
     numOfItemsInCart: 0,
     liked: true
@@ -21,7 +21,7 @@ const products = [
     _id: "2b22cd4ddr8g5fbccg571920",
     name: "Wrist Watch",
     price: 159,
-    category: { _id: "2b22cd4ddr8g5fbccg571920", name: "men's accessories" },
+    category: { _id: "6b21ca3eeb7f6fbccd471835", name: "Men's Accessories" },
     image: require("../data/images/wristwatch.jpg"),
     numOfItemsInCart: 0,
     liked: true
@@ -30,52 +30,52 @@ const products = [
     _id: "2b22cd4ddr8g5fbccg571921",
     name: "Belts",
     price: 60,
-    category: { _id: "2b22cd4ddr8g5fbccg571921", name: "men's accessories" },
+    category: { _id: "6b21ca3eeb7f6fbccd471835", name: "Men's Accessories" },
     image: require("../data/images/belts.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571922",
-    name: "coffeetable",
+    name: "CoffeeTable",
     price: 40,
-    category: { _id: "2b22cd4ddr8g5fbccg571922", name: "home decor" },
+    category: { _id: "6b21ca3eeb7f6fbccd471813", name: "Home decors" },
     image: require("../data/images/coffeetable.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571923",
-    name: "dishwasher",
+    name: "DishWasher",
     price: 600,
-    category: { _id: "2b22cd4ddr8g5fbccg571923", name: "kitchen products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471827", name: "Kitchen Items" },
     image: require("../data/images/dishwasher.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571924",
-    name: "fan",
+    name: "Fan",
     price: 60,
-    category: { _id: "2b22cd4ddr8g5fbccg571924", name: "home products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471830", name: "Home Products" },
     image: require("../data/images/fan.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571925",
-    name: "fridge",
+    name: "Fridge",
     price: 500,
-    category: { _id: "2b22cd4ddr8g5fbccg571925", name: "kitchen products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471827", name: "Kitchen Items" },
     image: require("../data/images/fridge.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571926",
-    name: "hairdryer",
+    name: "HairDryer",
     price: 120,
-    category: { _id: "2b22cd4ddr8g5fbccg571926", name: "health & beauty" },
+    category: { _id: "6b21ca3eeb7f6fbccd471825", name: "Health & Beauty" },
     image: require("../data/images/hairdryer.jpg"),
     numOfItemsInCart: 0,
     liked: true
@@ -84,25 +84,25 @@ const products = [
     _id: "2b22cd4ddr8g5fbccg571927",
     name: "Iron box",
     price: 100,
-    category: { _id: "2b22cd4ddr8g5fbccg571927", name: "home products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471830", name: "Home Products" },
     image: require("../data/images/Iron box.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571928",
-    name: "luggagebag",
+    name: "LuggageBag",
     price: 230,
-    category: { _id: "2b22cd4ddr8g5fbccg571928", name: "home products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471830", name: "Home Products" },
     image: require("../data/images/luggagebag.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571929",
-    name: "mac",
+    name: "Mac",
     price: 900,
-    category: { _id: "2b22cd4ddr8g5fbccg571929", name: "electronics" },
+    category: { _id: "6b21ca3eeb7f6fbccd471811", name: "Electronics" },
     image: require("../data/images/mac.jpg"),
     numOfItemsInCart: 0,
     liked: true
@@ -111,70 +111,70 @@ const products = [
     _id: "2b22cd4ddr8g5fbccg571930",
     name: "Samsung tab",
     price: 470,
-    category: { _id: "2b22cd4ddr8g5fbccg571930", name: "electronics" },
+    category: { _id: "6b21ca3eeb7f6fbccd471811", name: "Electronics" },
     image: require("../data/images/Samsung tab.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571931",
-    name: "straightner",
+    name: "Straightner",
     price: 150,
-    category: { _id: "2b22cd4ddr8g5fbccg571931", name: "health & beauty" },
+    category: { _id: "6b21ca3eeb7f6fbccd471825", name: "Health & Beauty" },
     image: require("../data/images/straightner.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571932",
-    name: "studytable",
+    name: "StudyTable",
     price: 99,
-    category: { _id: "2b22cd4ddr8g5fbccg571932", name: "home decor" },
+    category: { _id: "6b21ca3eeb7f6fbccd471813", name: "Home decors" },
     image: require("../data/images/studytable.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571933",
-    name: "toaster",
+    name: "Toaster",
     price: 80,
-    category: { _id: "2b22cd4ddr8g5fbccg571933", name: "kitchen products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471827", name: "Kitchen Items" },
     image: require("../data/images/toaster.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571934",
-    name: "trimer",
+    name: "Trimmer",
     price: 70,
-    category: { _id: "2b22cd4ddr8g5fbccg571934", name: "men's accessories" },
+    category: { _id: "6b21ca3eeb7f6fbccd471835", name: "Men's Accessories" },
     image: require("../data/images/trimer.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571935",
-    name: "vaccumcleaner",
+    name: "Vaccum Cleaner",
     price: 450,
-    category: { _id: "2b22cd4ddr8g5fbccg571935", name: "home products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471830", name: "Home Products" },
     image: require("../data/images/vaccumcleaner.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571936",
-    name: "washingmachine",
+    name: "WashingMachine",
     price: 700,
-    category: { _id: "2b22cd4ddr8g5fbccg571936", name: "home products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471830", name: "Home Products" },
     image: require("../data/images/washingmachine.jpg"),
     numOfItemsInCart: 0,
     liked: true
   },
   {
     _id: "2b22cd4ddr8g5fbccg571937",
-    name: "juicer",
+    name: "Juicer",
     price: 69,
-    category: { _id: "2b22cd4ddr8g5fbccg571937", name: "kitchen products" },
+    category: { _id: "6b21ca3eeb7f6fbccd471827", name: "Kitchen Items" },
     image: require("../data/images/juicer.jpg"),
     numOfItemsInCart: 0,
     liked: true
