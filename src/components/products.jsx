@@ -1,26 +1,31 @@
 import React, { Component } from "react";
+import _ from "lodash";
 import { getProducts } from "../services/fakeProducts";
 import { getCategories } from "../services/fakeCategorys";
-// import Like from "./common/like";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
 import { paginate } from "../utils/paginate";
+import ProductsTable from "./productsTable";
+import Cart from "./common/cart";
+
 class Products extends Component {
   state = {
     products: [],
     categories: [],
     pageSize: 3,
     currentPage: 1,
-    currentCategory: {},
-    selectedCategory: { name: "All Categories" }
+    selectedCategory: { name: "All Categories" },
+    sortColumn: { colName: "name", order: "asc" }
   };
 
   componentDidMount() {
     const products = getProducts();
-    const categories = [{ name: "All Categories" }, ...getCategories()];
+    const categories = [
+      { _id: "", name: "All Categories" },
+      ...getCategories()
+    ];
     this.setState({ products, categories });
   }
-
   handleDeleteFromProducts = productToDelete => {
     const actualProducts = this.state.products;
     const filteredProducts = actualProducts.filter(
@@ -47,40 +52,51 @@ class Products extends Component {
     return this.state.products.reduce((a, c) => a + c.numOfItemsInCart, 0);
   }
 
-  showNoProductsWarning(numOfProducts) {
-    if (numOfProducts === 0) {
-      return " No products found";
-    }
-  }
-
-  // handleLike = likedProduct => {
-  //   const products = [...this.state.products];
-  //   const index = products.indexOf(likedProduct);
-  //   products[index].liked = !products[index].liked;
-  //   this.setState({ products });
-  // };
+  //  handleLike = likedProduct => {
+  //    const products = [...this.state.products];
+  //    const index = products.indexOf(likedProduct);
+  //    products[index].liked = !products[index].liked;
+  //    this.setState({ products });
+  //  };
 
   handlePageChange = page => {
     this.setState({ currentPage: page });
   };
 
   handleSelectCategory = category => {
-    // console.log("category selected is :", category);
     this.setState({ selectedCategory: category, currentPage: 1 });
   };
-  render() {
-    const { length: count } = this.state.products;
+
+  handleSort = sortColumn => {
+    this.setState({ sortColumn });
+  };
+
+  getData = () => {
     const {
       products: allProducts,
       currentPage,
       selectedCategory,
-      pageSize
+      pageSize,
+      sortColumn
     } = this.state;
     //filter the products basing on category
     const filteredProductsList = selectedCategory._id
       ? allProducts.filter(p => p.category._id === selectedCategory._id)
       : allProducts;
-    const products = paginate(filteredProductsList, currentPage, pageSize);
+    //sort the products
+    const sortedProducts = _.orderBy(
+      filteredProductsList,
+      [sortColumn.colName],
+      [sortColumn.order]
+    );
+    //paginate the products
+    const paginatedProducts = paginate(sortedProducts, currentPage, pageSize);
+    return { data: paginatedProducts, totalLength: sortedProducts.length };
+  };
+
+  render() {
+    const { currentPage, pageSize, sortColumn } = this.state;
+    const result = this.getData();
     return (
       <div className="row">
         <div className="col-3">
@@ -91,72 +107,18 @@ class Products extends Component {
           />
         </div>
         <div className="col">
-          <button className="btn btn-primary pull-right">
-            <i className="fa fa-shopping-cart" aria-hidden="true" />
-            <span className="badge badge-light m-2">
-              {this.getTotalNumOfItemsInCart()}
-            </span>
-          </button>
-          <table className="table">
-            <thead className="thead-dark">
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>
-                  Price <i className="fa fa-eur" aria-hidden="true" />
-                </th>
-                <th>Category</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.showNoProductsWarning(count)}
-              {products.map(product => (
-                <tr key={product._id}>
-                  <td>
-                    <img
-                      src={product.image}
-                      width={50}
-                      height={50}
-                      alt={product.name}
-                    />
-                  </td>
-                  <td>{product.name}</td>
-                  <td>{product.price}</td>
-                  <td>{product.category.name}</td>
-                  <td>
-                    <button
-                      onClick={() => this.handleAddProductToCart(product)}
-                      className="btn btn-success"
-                    >
-                      +
-                    </button>
-                    <button
-                      onClick={() => this.handleDeleteProductFromCart(product)}
-                      className="btn btn-warning m-2"
-                      disabled={
-                        product.numOfItemsInCart === 0 ? "disabled" : ""
-                      }
-                    >
-                      -
-                    </button>
-                    {/* <Like
-                      liked={product.liked}
-                      onClick={() => this.handleLike(product)}
-                    /> */}
-                    <button
-                      onClick={() => this.handleDeleteFromProducts(product)}
-                      className="btn btn-danger m-2"
-                    >
-                      x
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Cart totalNumOfItems={this.getTotalNumOfItemsInCart()} />
+          <ProductsTable
+            products={result.data}
+            onAddToCart={this.handleAddProductToCart}
+            onDeleteFromCart={this.handleDeleteProductFromCart}
+            onDeleteFromTable={this.handleDeleteFromProducts}
+            onLike={this.handleLike}
+            onSort={this.handleSort}
+            sortColumn={sortColumn}
+          />
           <Pagination
-            itemsCount={filteredProductsList.length}
+            itemsCount={result.totalLength}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}

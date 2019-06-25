@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavBar = ({ totalCount }) => {
+const NavBar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-mg navbar-dark bg-dark">
