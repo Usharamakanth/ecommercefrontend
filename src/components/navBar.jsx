@@ -1,13 +1,43 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-mg navbar-dark bg-dark">
-        <a className="navbar-brand" href="http://localhost:3000">
-          {/* <img src={require("../data/images/bgimg.jpg")} width={60} alt="" /> */}
-          <h3>My Shop</h3>
-        </a>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Link className="navbar-brand" to="/" />
+        {/* <img src={require("../data/images/online.jpg")} width={60} alt="" /> */}
+        <h3>My Shop</h3>
+
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <NavLink className="nav-link" to="/">
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/orders">
+                Orders
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/products">
+                Products
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/register">
+                Register
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </nav>
     </>
   );

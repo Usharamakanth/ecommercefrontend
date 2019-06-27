@@ -1,10 +1,15 @@
 import React, { Component } from "react";
-import "./App.css";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Products from "./components/products";
 import NavBar from "./components/navBar";
-// import BackGroundImg from "./data/images/backgroundimg.jpg";
-// import "./styles/nav.css";
+import Home from "./components/home";
+import Login from "./components/login";
+import Orders from "./components/orders";
+import Register from "./components/register";
+import ProductDetails from "./components/productDetails";
+import NotFound from "./components/notFound";
 import "./styles/background.css";
+import "./App.css";
 class App extends Component {
   state = {};
 
@@ -39,9 +44,20 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <main className="container">
-          <Products />
-        </main>
+        <div className="container">
+          {/* <Products /> */}
+
+          <Switch>
+            <Route path="/products/:id" component={ProductDetails} />
+            <Route path="/products" component={Products} />
+            <Route path="/login" component={Login} />
+            <Route path="/orders" component={Orders} />
+            <Route path="/register" component={Register} />
+            <Route path="/" exact component={Home} />
+            <Route path="/not-found" component={NotFound} />
+            <Redirect to="/not-found" />
+          </Switch>
+        </div>
       </div>
     );
   }
