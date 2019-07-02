@@ -4,6 +4,10 @@ class ProductDetails extends Component {
   state = {};
   handleSave = () => {
     // Navigate to /products
+    //back button will bring back to product details
+    this.props.history.push("/products");
+    //back button will not bring back to productDetails
+    // this.props.history.replace("/products");
   };
 
   render() {
