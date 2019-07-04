@@ -5,7 +5,7 @@ const Home = () => {
       src={require("../data/images/home.jpg")}
       width="1150"
       height="550"
-      alt="<h1>Welcome to E-commerce Site<h1>"
+      alt="Welcome to E-commerce Site"
     />
   );
 };
