@@ -7,6 +7,7 @@ import ListGroup from "./common/listGroup";
 import { paginate } from "../utils/paginate";
 import ProductsTable from "./productsTable";
 import Cart from "./common/cart";
+import SearchBox from "./searchBox";
 
 class Products extends Component {
   state = {
@@ -108,6 +109,7 @@ class Products extends Component {
         </div>
         <div className="col">
           <Cart totalNumOfItems={this.getTotalNumOfItemsInCart()} />
+          <SearchBox />
           <ProductsTable
             products={result.data}
             onAddToCart={this.handleAddProductToCart}
