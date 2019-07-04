@@ -26,14 +26,24 @@ class Login extends Component {
     if (errors) return;
     console.log("Calling the backend service");
   };
+  validateProperty({ name, value }) {
+    if (value.trim() === "") return `${name} is required`;
+    if (name === "password" && value.length < 4)
+      return `${name} should contain atleast 4 characters`;
+  }
   handleChange = ({ currentTarget: input }) => {
+    //validation
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(input);
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
+
     const account = { ...this.state.account };
     //whenever you want to acces a property of an object
     //dynamically you should think of using  bracket notation.
     account[input.name] = input.value;
-    this.setState({ account });
+    this.setState({ account, errors });
   };
-
   render() {
     const { account, errors } = this.state;
     return (
