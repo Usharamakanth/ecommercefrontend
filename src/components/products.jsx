@@ -71,6 +71,10 @@ class Products extends Component {
   handleSort = sortColumn => {
     this.setState({ sortColumn });
   };
+  handleAddProduct = () => {
+    console.log("handle add product");
+    this.props.history.push("/products/new");
+  };
 
   getData = () => {
     const {
@@ -109,6 +113,9 @@ class Products extends Component {
         </div>
         <div className="col">
           <Cart totalNumOfItems={this.getTotalNumOfItemsInCart()} />
+          <button onClick={this.handleAddProduct} className="btn btn-success">
+            Add Product
+          </button>
           <SearchBox />
           <ProductsTable
             products={result.data}

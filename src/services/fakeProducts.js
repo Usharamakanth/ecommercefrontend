@@ -1,3 +1,5 @@
+import * as categoriesAPI from "./fakeCategorys";
+
 const products = [
   {
     _id: "2b22cd4ddr8g5fbccg571902",
@@ -182,4 +184,31 @@ const products = [
 ];
 export function getProducts() {
   return products;
+}
+export function getProductWithId(id) {
+  return products.find(p => p._id === id);
+}
+
+export function createProduct(product) {
+  product.category = categoriesAPI.categories.find(
+    c => c._id === product.category
+  );
+  product.image = require("../data/images/notFound.jpg");
+  product.numOfItemsInCart = 0;
+  if (!product._id) {
+    product._id = Date.now().toString();
+  }
+  console.log("create a new prod :", product);
+  products.push(product);
+  return product;
+}
+
+export function updateProduct(data) {
+  let product = getProductWithId(data.id);
+  product.name = data.name;
+  product.price = data.price;
+  product.category = categoriesAPI.categories.find(
+    c => c._id === data.category
+  );
+  return product;
 }

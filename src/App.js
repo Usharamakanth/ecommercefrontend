@@ -8,8 +8,10 @@ import Orders from "./components/orders";
 import Register from "./components/register";
 import ProductDetails from "./components/productDetails";
 import NotFound from "./components/notFound";
+import AddProductForm from "./components/addProductForm";
 import "./styles/background.css";
 import "./App.css";
+
 class App extends Component {
   state = {};
 
@@ -44,12 +46,12 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <div className="container">
-          {/* <Products /> */}
 
+        <main className="container">
           <Switch>
             <Route path="/products/:id" component={ProductDetails} />
             <Route path="/products" component={Products} />
+            <Route path="/products/new" exact component={AddProductForm} />
             <Route path="/login" component={Login} />
             <Route path="/orders" component={Orders} />
             <Route path="/register" component={Register} />
@@ -57,7 +59,7 @@ class App extends Component {
             <Route path="/not-found" component={NotFound} />
             <Redirect to="/not-found" />
           </Switch>
-        </div>
+        </main>
       </div>
     );
   }
